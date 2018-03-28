@@ -1,0 +1,95 @@
+// ==========================================================================
+// Mixins
+// ==========================================================================
+
+// ==== BEM selectors ====
+
+@mixin e($element) {
+	&__#{$element} {
+    @content;
+  }
+}
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+// ==== Media Queries ====
+
+@mixin mq($break) {
+  @if $break == "small" {
+    @media(min-width: $brkpoint-sm) and (max-width: $brkpoint-md) {
+      @content;
+    }
+  }
+  @else if $break == "medium" {
+    @media(min-width: $brkpoint-md + 1) {
+      @content;
+    }
+  }
+  @else if $break == "large" {
+    @media (min-width: $brkpoint-lg) {
+      @content;
+    }
+  }
+  @else {
+    @error "Whoops! No value could be retrieved '#{$break}'.";
+  }
+}
+
+// ==== Generate modifier color classes ====
+@mixin bg-colors($map) {
+  @each $theme, $color in $map {
+    &--#{$theme} {
+      background-color: $color;
+    }
+  }
+}
+
+// ==== Image replacement ====
+@mixin img-replace($img, $w, $h, $disp: block) {
+  background-image: url('#{$path--rel}/#{$img}');
+  background-repeat: no-repeat;
+  width: $w;
+  height: $h;
+  display: $disp;
+}
+
+// ==== Adjacent sibling margins ====
+@mixin doubly($margin: 1em) {
+  & + & {
+    margin-left: $margin;
+    @content;
+  }
+}
+
+// ==== Flexbox Settings ====
+@mixin flex($display, $direction, $align, $justify) {
+	display: $display;
+	flex-direction: $direction;
+	align-items: $align;
+	justify-content: $justify;
+}
+
+// ==== Grid Coulmns ====
+@mixin g-columns {
+	@for $i from 1 through $g-col-count {
+		@include m($i) {
+      &.theme__colors {
+        background-color: nth($g-colors, $i);
+        border-radius: $br--default;
+        padding: 0.6rem 1rem;
+        margin-bottom: 0.5rem;
+      }
+      @include mq(medium) {
+			 min-width: percentage($i / $g-col-count)-2;
+      }
+		}
+	}
+}
+
+
+
+
+

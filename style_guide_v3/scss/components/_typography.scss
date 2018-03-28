@@ -1,0 +1,27 @@
+// ==========================================================================
+// Headlines
+// ==========================================================================
+
+.headline {
+
+	@include m(primary){
+		@extend %hdln-prim;
+		margin-bottom: 2.5rem;
+	}
+
+ 	@include m(secondary) {
+		@extend %hdln-sec;
+		margin-top: 4rem;
+		margin-bottom: 1rem;
+		margin-left: 8%;
+	}
+}
+
+div {
+	.headline {
+		@include m(secondary) {
+			margin-left: 0;
+		}
+	}
+}
+

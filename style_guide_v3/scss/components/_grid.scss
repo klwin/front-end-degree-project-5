@@ -1,0 +1,25 @@
+// ==========================================================================
+// Grid Styles
+// ==========================================================================
+
+// ==== Grid Container ====
+.grid {
+  @include e(row) { 
+    @extend %clearfix;
+    @extend .centered;
+    width: 85%;
+    margin-bottom: 2rem;
+    @include mq(medium) {
+      @include flex(flex, row, center, space-around);
+    }
+  }
+  @include e(col) {
+    @include g-columns;
+  }
+}
+
+.card {
+  @include mq(medium) {
+    margin-right: 3rem;
+  }
+}

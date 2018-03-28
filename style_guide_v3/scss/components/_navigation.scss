@@ -1,0 +1,30 @@
+// ==========================================================================
+// Nav
+// ==========================================================================
+
+.nav {
+	margin-bottom: 2rem;
+	@include mq(medium) {
+		margin-top: 1rem;
+   		margin-left: 20%;
+	}
+}
+
+.nav__item {
+	@extend %nav-item-horz;
+	a {
+		@extend %nav-item-link;
+		color: palette(grey);
+		&:hover {
+			@extend %nav-item-on;
+		}
+	}
+}
+
+.nav__item--current {
+	@extend %nav-item-horz;
+	a {
+		@extend %nav-item-link;
+		@extend %nav-item-on;
+	}
+}
